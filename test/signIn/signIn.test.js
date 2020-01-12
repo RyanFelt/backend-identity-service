@@ -25,7 +25,6 @@ exports.signInTests = () => {
 
         const decodedToken = jwt.verify(res.body.authorization, IS_ACCESS_KEY);
 
-        expect(signInUser.userId).to.equal(decodedToken.userId);
         expect(res.body.userId).to.equal(decodedToken.userId);
         expect(signInUser.body.email).to.equal(decodedToken.email);
         done();

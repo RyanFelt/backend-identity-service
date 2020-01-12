@@ -25,7 +25,6 @@ module.exports.handler = async (req, res) => {
     putRefresh(refreshParams);
 
     return res.status(200).send({
-      userId: user.userId,
       authorization: authorizationToken,
       refresh: refreshToken,
     });
