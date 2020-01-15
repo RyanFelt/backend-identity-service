@@ -1,4 +1,5 @@
 const { docClient } = require('./dynamoSetup');
+const { ServiceUnavailableError } = require('./errors');
 
 exports.queryUserByEmail = async email => {
   try {
@@ -18,7 +19,7 @@ exports.queryUserByEmail = async email => {
     return false;
   } catch (e) {
     console.log(`ERROR :: queryUserByEmail: email=${email} :: ${e}`);
-    return false;
+    throw new ServiceUnavailableError('db unavailable');
   }
 };
 
@@ -38,88 +39,113 @@ exports.getUser = async userId => {
     return false;
   } catch (e) {
     console.log(`ERROR :: getUser: userId=${userId} :: ${e}`);
-    return false;
+    throw new ServiceUnavailableError('db unavailable');
   }
 };
 
 exports.putUser = async Item => {
-  const params = {
-    TableName: process.env.IS_USER_TABLE,
-    Item,
-  };
-  return docClient.put(params).promise();
+  try {
+    const params = {
+      TableName: process.env.IS_USER_TABLE,
+      Item,
+    };
+    return docClient.put(params).promise();
+  } catch (e) {
+    console.log(`ERROR :: putUser: Item=${Item} :: ${e}`);
+    throw new ServiceUnavailableError('db unavailable');
+  }
 };
 
 exports.userEmailVerified = async userId => {
-  const params = {
-    TableName: process.env.IS_USER_TABLE,
-    Key: {
-      userId,
-    },
-    UpdateExpression: 'set #emailVerified = :emailVerified',
-    ExpressionAttributeNames: {
-      '#emailVerified': 'emailVerified',
-    },
-    ExpressionAttributeValues: {
-      ':emailVerified': true,
-    },
-    ReturnConsumedCapacity: 'TOTAL',
-    ReturnValues: 'UPDATED_NEW',
-  };
-  return docClient.update(params).promise();
+  try {
+    const params = {
+      TableName: process.env.IS_USER_TABLE,
+      Key: {
+        userId,
+      },
+      UpdateExpression: 'set #emailVerified = :emailVerified',
+      ExpressionAttributeNames: {
+        '#emailVerified': 'emailVerified',
+      },
+      ExpressionAttributeValues: {
+        ':emailVerified': true,
+      },
+      ReturnConsumedCapacity: 'TOTAL',
+      ReturnValues: 'UPDATED_NEW',
+    };
+    return docClient.update(params).promise();
+  } catch (e) {
+    console.log(`ERROR :: userEmailVerified: userId=${userId} :: ${e}`);
+    throw new ServiceUnavailableError('db unavailable');
+  }
 };
 
 exports.updatePassword = async (userId, encryptPasword) => {
-  const params = {
-    TableName: process.env.IS_USER_TABLE,
-    Key: {
-      userId,
-    },
-    UpdateExpression: 'set #password = :password, #updateDate = :updateDate',
-    ExpressionAttributeNames: {
-      '#password': 'password',
-      '#updateDate': 'updateDate',
-    },
-    ExpressionAttributeValues: {
-      ':password': encryptPasword,
-      ':updateDate': new Date().toISOString(),
-    },
-    ReturnConsumedCapacity: 'TOTAL',
-    ReturnValues: 'UPDATED_NEW',
-  };
-  return docClient.update(params).promise();
+  try {
+    const params = {
+      TableName: process.env.IS_USER_TABLE,
+      Key: {
+        userId,
+      },
+      UpdateExpression: 'set #password = :password, #updateDate = :updateDate',
+      ExpressionAttributeNames: {
+        '#password': 'password',
+        '#updateDate': 'updateDate',
+      },
+      ExpressionAttributeValues: {
+        ':password': encryptPasword,
+        ':updateDate': new Date().toISOString(),
+      },
+      ReturnConsumedCapacity: 'TOTAL',
+      ReturnValues: 'UPDATED_NEW',
+    };
+    return docClient.update(params).promise();
+  } catch (e) {
+    console.log(`ERROR :: updatePassword: userId=${userId} :: ${e}`);
+    throw new ServiceUnavailableError('db unavailable');
+  }
 };
 
 exports.updateEmail = async (userId, email) => {
-  const params = {
-    TableName: process.env.IS_USER_TABLE,
-    Key: {
-      userId,
-    },
-    UpdateExpression:
-      'set #email = :email, #emailVerified = :emailVerified, #updateDate = :updateDate',
-    ExpressionAttributeNames: {
-      '#email': 'email',
-      '#emailVerified': 'emailVerified',
-      '#updateDate': 'updateDate',
-    },
-    ExpressionAttributeValues: {
-      ':email': email,
-      ':emailVerified': false,
-      ':updateDate': new Date().toISOString(),
-    },
-    ReturnConsumedCapacity: 'TOTAL',
-    ReturnValues: 'UPDATED_NEW',
-  };
-  return docClient.update(params).promise();
+  try {
+    const params = {
+      TableName: process.env.IS_USER_TABLE,
+      Key: {
+        userId,
+      },
+      UpdateExpression:
+        'set #email = :email, #emailVerified = :emailVerified, #updateDate = :updateDate',
+      ExpressionAttributeNames: {
+        '#email': 'email',
+        '#emailVerified': 'emailVerified',
+        '#updateDate': 'updateDate',
+      },
+      ExpressionAttributeValues: {
+        ':email': email,
+        ':emailVerified': false,
+        ':updateDate': new Date().toISOString(),
+      },
+      ReturnConsumedCapacity: 'TOTAL',
+      ReturnValues: 'UPDATED_NEW',
+    };
+    return docClient.update(params).promise();
+  } catch (e) {
+    console.log(`ERROR :: updateEmail: userId=${userId} :: ${e}`);
+    throw new ServiceUnavailableError('db unavailable');
+  }
 };
 
 exports.putRefresh = async Item => {
-  const params = {
-    TableName: process.env.IS_REFRESH_TABLE,
-    Item,
-  };
-  return docClient.put(params).promise();
+  try {
+    const params = {
+      TableName: process.env.IS_REFRESH_TABLE,
+      Item,
+    };
+    return docClient.put(params).promise();
+  } catch (e) {
+    console.log(`ERROR :: putRefresh: Item=${Item} :: ${e}`);
+    throw new ServiceUnavailableError('db unavailable');
+  }
 };
 
 exports.getRefresh = async refreshToken => {
@@ -138,16 +164,21 @@ exports.getRefresh = async refreshToken => {
     return false;
   } catch (e) {
     console.log(`ERROR :: getRefresh: refreshToken=${refreshToken} :: ${e}`);
-    return false;
+    throw new ServiceUnavailableError('db unavailable');
   }
 };
 
 exports.deleteRefreshRecord = async refreshToken => {
-  const params = {
-    TableName: process.env.IS_REFRESH_TABLE,
-    Key: {
-      refreshToken,
-    },
-  };
-  return docClient.delete(params).promise();
+  try {
+    const params = {
+      TableName: process.env.IS_REFRESH_TABLE,
+      Key: {
+        refreshToken,
+      },
+    };
+    return docClient.delete(params).promise();
+  } catch (e) {
+    console.log(`ERROR :: deleteRefreshRecord: refreshToken=${refreshToken} :: ${e}`);
+    throw new ServiceUnavailableError('db unavailable');
+  }
 };

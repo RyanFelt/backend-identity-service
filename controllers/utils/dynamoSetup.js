@@ -5,8 +5,10 @@ let config = {
 };
 
 if (process.env.IS_NODE_ENV === 'TEST' || process.env.IS_NODE_ENV === 'LOCAL') {
+  const dynamoPort = process.env.IS_DYNAMODB_PORT || '8000';
+
   config = Object.assign(config, {
-    endpoint: new AWS.Endpoint(`http://localhost:${process.env.IS_DYNAMODB_PORT}`),
+    endpoint: new AWS.Endpoint(`http://localhost:${dynamoPort}`),
     accessKeyId: 'accessKeyId',
     secretAccessKey: 'secretAccessKey',
   });

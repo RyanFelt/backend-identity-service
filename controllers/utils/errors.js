@@ -44,6 +44,15 @@ class ForbiddenError extends Error {
   }
 }
 
+class ServiceUnavailableError extends Error {
+  constructor(message) {
+    super(message);
+    this.name = this.constructor.name;
+    this.statusCode = 503;
+    this.message = message;
+  }
+}
+
 const resolveErrorSendResponse = (e, res) => {
   if (e.statusCode) {
     res.status(e.statusCode).send({
@@ -63,5 +72,6 @@ module.exports = {
   ValidationError,
   ResourceNotFoundError,
   ForbiddenError,
+  ServiceUnavailableError,
   resolveErrorSendResponse,
 };
