@@ -3,7 +3,7 @@ const chaihttp = require('chai-http');
 const nock = require('nock');
 const { it } = require('mocha');
 const jwt = require('jsonwebtoken');
-const { server } = require('../../app');
+const { server } = require('../app');
 const fixtures = require('./fixtures');
 
 const { IS_GOOGLE_DECRYPT_API, IS_ACCESS_KEY } = process.env;
@@ -21,11 +21,10 @@ exports.signInTests = () => {
       .send(signInUser.body)
       .end((err, res) => {
         expect(res).to.have.status(200);
-        expect(res.body).to.have.all.keys('userId', 'authorization', 'refresh');
+        expect(res.body).to.have.all.keys('authorization', 'refresh');
 
         const decodedToken = jwt.verify(res.body.authorization, IS_ACCESS_KEY);
 
-        expect(res.body.userId).to.equal(decodedToken.userId);
         expect(signInUser.body.email).to.equal(decodedToken.email);
         done();
       });

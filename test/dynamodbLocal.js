@@ -7,7 +7,8 @@ exports.checkTables = async () => dynamodb.listTables({}).promise();
 
 exports.deleteTables = async tables => {
   for (let x = 0; x < tables.TableNames.length; x += 1) {
-    dynamodb.deleteTable({ TableName: tables.TableNames[x] }).promise();
+    // eslint-disable-next-line no-await-in-loop
+    await dynamodb.deleteTable({ TableName: tables.TableNames[x] }).promise();
   }
 };
 

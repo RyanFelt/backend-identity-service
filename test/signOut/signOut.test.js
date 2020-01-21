@@ -1,7 +1,7 @@
 const chai = require('chai');
 const chaihttp = require('chai-http');
 const { it } = require('mocha');
-const { server } = require('../../app');
+const { server } = require('../app');
 const fixtures = require('./fixtures');
 const { getRefreshToken } = require('../dynamodbLocal');
 
