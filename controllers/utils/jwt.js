@@ -1,5 +1,12 @@
 const jwt = require('jsonwebtoken');
 
+const {
+  IS_ACCESS_KEY,
+  IS_ACCESSS_TOKEN_TIME,
+  IS_REFRESH_KEY,
+  IS_REFRESH_TOKEN_TIME,
+} = process.env;
+
 exports.generateToken = user =>
   // eslint-disable-next-line implicit-arrow-linebreak
   jwt.sign(
@@ -8,9 +15,9 @@ exports.generateToken = user =>
       email: user.email,
       role: user.role,
     },
-    process.env.IS_ACCESS_KEY,
+    IS_ACCESS_KEY,
     {
-      expiresIn: process.env.IS_ACCESSS_TOKEN_TIME,
+      expiresIn: IS_ACCESSS_TOKEN_TIME,
     },
   );
 
@@ -20,16 +27,16 @@ exports.generateRefreshToken = user =>
     {
       userId: user.userId,
     },
-    process.env.IS_REFRESH_KEY,
+    IS_REFRESH_KEY,
     {
-      expiresIn: process.env.IS_REFRESH_TOKEN_TIME,
+      expiresIn: IS_REFRESH_TOKEN_TIME,
     },
   );
 
 exports.authenticateRefresh = async authorization => {
   try {
     const token = authorization;
-    const decodeToken = await jwt.verify(token, process.env.IS_REFRESH_KEY);
+    const decodeToken = await jwt.verify(token, IS_REFRESH_KEY);
     return {
       userId: decodeToken.userId,
     };
@@ -42,7 +49,7 @@ exports.authenticateRefresh = async authorization => {
 exports.auth = async authorization => {
   try {
     const token = authorization;
-    const decodeToken = await jwt.verify(token, process.env.IS_ACCESS_KEY);
+    const decodeToken = await jwt.verify(token, IS_ACCESS_KEY);
     return {
       userId: decodeToken.userId,
       email: decodeToken.email,

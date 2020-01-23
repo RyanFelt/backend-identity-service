@@ -4,6 +4,8 @@ require('dotenv').config();
 const express = require('express');
 const { validate } = require('../middlewares/validate');
 
+const { IS_PORT } = process.env;
+
 const app = express();
 
 const identityService = require('../routes');
@@ -14,7 +16,7 @@ app.use(validate);
 
 app.use('/', identityService);
 
-exports.server = app.listen(process.env.IS_PORT, () => {
+exports.server = app.listen(IS_PORT, () => {
   console.log(`
 '####'########:'########'##::: ##'########'####'########'##:::'##:
 . ##::##.... ##:##.....::###:: ##... ##..:. ##:... ##..:. ##:'##::
@@ -25,5 +27,5 @@ exports.server = app.listen(process.env.IS_PORT, () => {
 '####:########::########:##::. ##::: ##:::'####::: ##:::::: ##::::
 ....:........::........:..::::..::::..::::....::::..:::::::..:::::
 `);
-  console.log(`---- Server running at localhost:${process.env.IS_PORT} ----`);
+  console.log(`---- Server running at localhost:${IS_PORT} ----`);
 });

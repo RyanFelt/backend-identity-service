@@ -1,10 +1,12 @@
 const { docClient } = require('./dynamoSetup');
 const { ServiceUnavailableError } = require('./errors');
 
+const { IS_USER_TABLE, IS_REFRESH_TABLE } = process.env;
+
 exports.queryUserByEmail = async email => {
   try {
     const params = {
-      TableName: process.env.IS_USER_TABLE,
+      TableName: IS_USER_TABLE,
       IndexName: 'email-index',
       KeyConditionExpression: 'email = :email',
       ExpressionAttributeValues: {
@@ -26,7 +28,7 @@ exports.queryUserByEmail = async email => {
 exports.getUser = async userId => {
   try {
     const params = {
-      TableName: process.env.IS_USER_TABLE,
+      TableName: IS_USER_TABLE,
       Key: {
         userId,
       },
@@ -46,7 +48,7 @@ exports.getUser = async userId => {
 exports.putUser = async Item => {
   try {
     const params = {
-      TableName: process.env.IS_USER_TABLE,
+      TableName: IS_USER_TABLE,
       Item,
     };
     return docClient.put(params).promise();
@@ -59,7 +61,7 @@ exports.putUser = async Item => {
 exports.userEmailVerified = async userId => {
   try {
     const params = {
-      TableName: process.env.IS_USER_TABLE,
+      TableName: IS_USER_TABLE,
       Key: {
         userId,
       },
@@ -83,7 +85,7 @@ exports.userEmailVerified = async userId => {
 exports.updatePassword = async (userId, encryptPasword) => {
   try {
     const params = {
-      TableName: process.env.IS_USER_TABLE,
+      TableName: IS_USER_TABLE,
       Key: {
         userId,
       },
@@ -109,7 +111,7 @@ exports.updatePassword = async (userId, encryptPasword) => {
 exports.updateEmail = async (userId, email) => {
   try {
     const params = {
-      TableName: process.env.IS_USER_TABLE,
+      TableName: IS_USER_TABLE,
       Key: {
         userId,
       },
@@ -138,7 +140,7 @@ exports.updateEmail = async (userId, email) => {
 exports.putRefresh = async Item => {
   try {
     const params = {
-      TableName: process.env.IS_REFRESH_TABLE,
+      TableName: IS_REFRESH_TABLE,
       Item,
     };
     return docClient.put(params).promise();
@@ -151,7 +153,7 @@ exports.putRefresh = async Item => {
 exports.getRefresh = async refreshToken => {
   try {
     const params = {
-      TableName: process.env.IS_REFRESH_TABLE,
+      TableName: IS_REFRESH_TABLE,
       Key: {
         refreshToken,
       },
@@ -171,14 +173,16 @@ exports.getRefresh = async refreshToken => {
 exports.deleteRefreshRecord = async refreshToken => {
   try {
     const params = {
-      TableName: process.env.IS_REFRESH_TABLE,
+      TableName: IS_REFRESH_TABLE,
       Key: {
         refreshToken,
       },
     };
     return docClient.delete(params).promise();
   } catch (e) {
-    console.log(`ERROR :: deleteRefreshRecord: refreshToken=${refreshToken} :: ${e}`);
+    console.log(
+      `ERROR :: deleteRefreshRecord: refreshToken=${refreshToken} :: ${e}`,
+    );
     throw new ServiceUnavailableError('db unavailable');
   }
 };

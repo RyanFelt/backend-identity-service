@@ -1,11 +1,13 @@
 const AWS = require('aws-sdk');
 
+const { IS_REGION, IS_NODE_ENV, IS_DYNAMODB_PORT } = process.env;
+
 let config = {
-  region: process.env.IS_REGION || 'us-east-1',
+  region: IS_REGION || 'us-east-1',
 };
 
-if (process.env.IS_NODE_ENV === 'TEST' || process.env.IS_NODE_ENV === 'LOCAL') {
-  const dynamoPort = process.env.IS_DYNAMODB_PORT || '8000';
+if (IS_NODE_ENV === 'TEST' || IS_NODE_ENV === 'LOCAL') {
+  const dynamoPort = IS_DYNAMODB_PORT || '8000';
 
   config = Object.assign(config, {
     endpoint: new AWS.Endpoint(`http://localhost:${dynamoPort}`),

@@ -5,13 +5,15 @@ const {
   resolveErrorSendResponse,
 } = require('../../controllers/utils/errors');
 
+const { IS_ACCESS_KEY } = process.env;
+
 const authenticate = async (req, res, next) => {
   try {
     const token = req.headers.authorization;
     let decodeToken = {};
 
     try {
-      decodeToken = await jwt.verify(token, process.env.IS_ACCESS_KEY);
+      decodeToken = await jwt.verify(token, IS_ACCESS_KEY);
     } catch (e) {
       console.log('ERROR :: authenticate()', e);
       throw new InvalidCredentialsError('Unauthorized');

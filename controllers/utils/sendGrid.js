@@ -1,14 +1,16 @@
 const rp = require('request-promise');
 
+const { IS_EMAIL_FE_HOST, IS_SG_API_KEY, IS_SG_URL } = process.env;
+
 exports.sendEmailVerification = async (email, emailHash) => {
   try {
-    const url = `${process.env.IS_EMAIL_FE_HOST}/verify/${emailHash}`;
+    const url = `${IS_EMAIL_FE_HOST}/verify/${emailHash}`;
 
     const requestParams = {
       method: 'POST',
-      uri: `${process.env.IS_SG_URL}/v3/mail/send`,
+      uri: `${IS_SG_URL}/v3/mail/send`,
       headers: {
-        Authorization: `Bearer ${process.env.IS_SG_API_KEY}`,
+        Authorization: `Bearer ${IS_SG_API_KEY}`,
       },
       body: {
         personalizations: [
@@ -37,13 +39,13 @@ exports.sendEmailVerification = async (email, emailHash) => {
 
 exports.sendPasswordReset = async (email, hash) => {
   try {
-    const url = `${process.env.IS_EMAIL_FE_HOST}/passwordReset/${hash}`;
+    const url = `${IS_EMAIL_FE_HOST}/passwordReset/${hash}`;
 
     const requestParams = {
       method: 'POST',
-      uri: `${process.env.IS_SG_URL}/v3/mail/send`,
+      uri: `${IS_SG_URL}/v3/mail/send`,
       headers: {
-        Authorization: `Bearer ${process.env.IS_SG_API_KEY}`,
+        Authorization: `Bearer ${IS_SG_API_KEY}`,
       },
       body: {
         personalizations: [
@@ -72,13 +74,13 @@ exports.sendPasswordReset = async (email, hash) => {
 
 exports.sendChangeEmail = async (email, hash) => {
   try {
-    const url = `${process.env.IS_EMAIL_FE_HOST}/changeEmail/${hash}`;
+    const url = `${IS_EMAIL_FE_HOST}/changeEmail/${hash}`;
 
     const requestParams = {
       method: 'POST',
-      uri: `${process.env.IS_SG_URL}/v3/mail/send`,
+      uri: `${IS_SG_URL}/v3/mail/send`,
       headers: {
-        Authorization: `Bearer ${process.env.IS_SG_API_KEY}`,
+        Authorization: `Bearer ${IS_SG_API_KEY}`,
       },
       body: {
         personalizations: [

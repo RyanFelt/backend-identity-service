@@ -1,6 +1,6 @@
 {
   "name": "ryanfelt-identity-service",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "",
   "main": "index.js",
   "author": "Ryan Feltkamp",
@@ -11,7 +11,7 @@
     "test": "IS_NODE_ENV=TEST IS_USER_TABLE=users IS_REFRESH_TABLE=refresh IS_REGION=us-east-1 IS_ACCESSS_TOKEN_TIME=72000 IS_REFRESH_TOKEN_TIME=720000 IS_ACCESS_KEY=server_secret IS_REFRESH_KEY=refresh_secret IS_CIPHER_ALGORITHM=aes-256-ctr IS_ENCRYPT_PASSWORD_KEY=b2df428b9929d3ace7c598bbf4e496b2 IS_ENCRYPT_KEY=ciphersjdkfituejdnvmgjfhnskcjsme IS_INPUT_ENCODING=utf8 IS_OUTPUT_ENCODING=hex IS_DYNAMODB_PORT=8000 IS_SG_URL=https://api.sendgrid.com IS_EMAIL_FE_HOST=http://localhost:3000 nyc mocha ./test/runner.js --timeout 10000 --exit"
   },
   "prettier": {
-    "trailingComma": "es5",
+    "trailingComma": "all",
     "tabWidth": 2,
     "semi": true,
     "singleQuote": true,
