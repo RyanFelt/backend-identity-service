@@ -18,7 +18,7 @@ exports.queryUserByEmail = async email => {
     if (users.Items[0]) {
       return users.Items[0];
     }
-    return false;
+    return {};
   } catch (e) {
     console.log(`ERROR :: queryUserByEmail: email=${email} :: ${e}`);
     throw new ServiceUnavailableError('db unavailable');
@@ -38,7 +38,7 @@ exports.getUser = async userId => {
     if (user.Item) {
       return user.Item;
     }
-    return false;
+    return {};
   } catch (e) {
     console.log(`ERROR :: getUser: userId=${userId} :: ${e}`);
     throw new ServiceUnavailableError('db unavailable');
@@ -163,7 +163,7 @@ exports.getRefresh = async refreshToken => {
     if (token.Item) {
       return token.Item;
     }
-    return false;
+    return {};
   } catch (e) {
     console.log(`ERROR :: getRefresh: refreshToken=${refreshToken} :: ${e}`);
     throw new ServiceUnavailableError('db unavailable');

@@ -9,7 +9,7 @@ module.exports.handler = async (req, res) => {
     const encryptedPassword = encrypt(req.body.password, true);
 
     const user = await queryUserByEmail(email);
-    if (!user) {
+    if (!user.userId) {
       throw new ValidationError('invalid user');
     }
 

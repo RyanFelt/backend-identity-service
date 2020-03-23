@@ -8,7 +8,7 @@ module.exports.handler = async (req, res) => {
     const { email } = req.body;
 
     const user = await queryUserByEmail(email);
-    if (!user) {
+    if (!user.userId) {
       throw new ValidationError('invalid user email');
     }
 

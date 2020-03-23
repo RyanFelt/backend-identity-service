@@ -16,7 +16,7 @@ module.exports.handler = async (req, res) => {
 
     // TODO :: refresh table should have ttl so old refreshTokens get deleted
     const refreshRecord = await getRefresh(refreshToken);
-    if (!refreshRecord) {
+    if (!refreshRecord.userId) {
       throw new ResourceExistsError('invalid refresh token');
     }
 

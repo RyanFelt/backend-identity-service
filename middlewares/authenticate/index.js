@@ -9,6 +9,11 @@ const { IS_ACCESS_KEY } = process.env;
 
 const authenticate = async (req, res, next) => {
   try {
+    if (!req.headers.authorization) {
+      req.user = {};
+      return next();
+    }
+
     const token = req.headers.authorization;
     let decodeToken = {};
 
@@ -34,12 +39,11 @@ const authenticate = async (req, res, next) => {
 exports.authRole = roleParam => (req, res, next) => {
   let role = roleParam;
   if (!role) {
-    role = 'PEASANT';
-  } else {
-    role = role.toUpperCase();
+    role = 1;
   }
+
   authenticate(req, res, () => {
-    if (role === req.user.role) {
+    if (role <= req.user.role) {
       next();
     } else {
       throw new ForbiddenError('Insufficient permissions');

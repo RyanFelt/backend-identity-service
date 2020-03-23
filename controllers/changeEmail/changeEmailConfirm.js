@@ -16,7 +16,7 @@ module.exports.handler = async (req, res) => {
     }
 
     const user = await queryUserByEmail(email);
-    if (user) {
+    if (user.userId) {
       throw new ResourceExistsError('email already in use');
     }
 

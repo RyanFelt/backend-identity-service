@@ -1,9 +1,6 @@
 const { queryUserByEmail, userEmailVerified } = require('../utils/database');
 const { decrypt } = require('../utils/crypto');
-const {
-  ValidationError,
-  resolveErrorSendResponse,
-} = require('../utils/errors');
+const { ValidationError, resolveErrorSendResponse } = require('../utils/errors');
 
 module.exports.handler = async (req, res) => {
   try {
@@ -15,7 +12,7 @@ module.exports.handler = async (req, res) => {
     }
 
     const user = await queryUserByEmail(email);
-    if (!user) {
+    if (!user.userId) {
       throw new ValidationError('user email hash invalid');
     }
 
