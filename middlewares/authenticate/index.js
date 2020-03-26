@@ -39,11 +39,11 @@ const authenticate = async (req, res, next) => {
 exports.authRole = roleParam => (req, res, next) => {
   let role = roleParam;
   if (!role) {
-    role = 1;
+    role = '1';
   }
 
   authenticate(req, res, () => {
-    if (role <= req.user.role) {
+    if (role <= req.user.role || '1') {
       next();
     } else {
       throw new ForbiddenError('Insufficient permissions');
