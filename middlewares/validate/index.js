@@ -1,4 +1,7 @@
-const { ValidationError, resolveErrorSendResponse } = require('../../controllers/utils/errors');
+const {
+  ValidationError,
+  resolveErrorSendResponse,
+} = require('../../controllers/utils/errors');
 const validationSchema = require('./validationSchema');
 
 const requiredFields = param => {
@@ -37,7 +40,7 @@ exports.validate = (req, res, next) => {
 
       // Makes sure required fields are present and valid
       if (schema[x].required === true && !requiredFields(param)) {
-        throw new ValidationError(`MISSING_${schema[x].field.toUpperCase()}`);
+        throw new ValidationError(`${schema[x].field.toLowerCase()} is required`);
       }
 
       // Makes sure email is valid format
@@ -45,7 +48,7 @@ exports.validate = (req, res, next) => {
         param = param.trim().toLowerCase();
       }
       if (schema[x].field === 'email' && !checkEmail(param)) {
-        throw new ValidationError('INVALID_EMAIL');
+        throw new ValidationError('invalid email');
       }
 
       //  Makes sure password is valid format
@@ -54,7 +57,7 @@ exports.validate = (req, res, next) => {
         (schema[x].field === 'password' || schema[x].field === 'newPassword') &&
         !checkPassword(param)
       ) {
-        throw new ValidationError('INVALID_PASSWORD');
+        throw new ValidationError('invalid password');
       }
     }
 

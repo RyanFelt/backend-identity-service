@@ -2,7 +2,7 @@
 const url = '/refresh';
 const userId = '1370a6e1-1311-4af6-9eb8-6ede26d7be49';
 const email = 'refreshuser@test.com';
-const role = 'PEASANT';
+const role = '1';
 const refreshToken =
   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxMzcwYTZlMS0xMzExLTRhZjYtOWViOC02ZWRlMjZkN2JlNDkiLCJpYXQiOjE1NzY4Nzg1Mjd9.ab15RvCFD9-EilPAz8n4XRAhsjdcFt1E2P01_KG7iek';
 const userAgent =

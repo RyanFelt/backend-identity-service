@@ -34,7 +34,7 @@ exports.changePasswordTests = () => {
       .send(changePasswordNoPassword.body)
       .end((err, res) => {
         expect(res).to.have.status(400);
-        const toBe = 'MISSING_PASSWORD';
+        const toBe = 'password is required';
         expect(res.body.message).to.equal(toBe);
         done();
       });
@@ -49,7 +49,7 @@ exports.changePasswordTests = () => {
       .send(changePasswordNoNewPassword.body)
       .end((err, res) => {
         expect(res).to.have.status(400);
-        const toBe = 'MISSING_NEWPASSWORD';
+        const toBe = 'newpassword is required';
         expect(res.body.message).to.equal(toBe);
         done();
       });

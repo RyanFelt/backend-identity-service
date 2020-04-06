@@ -2,13 +2,20 @@ require('dotenv').config();
 const { describe, before } = require('mocha');
 
 // eslint-disable-next-line object-curly-newline
-const { checkTables, deleteTables, createTables, createRecords } = require('./dynamodbLocal');
+const {
+  checkTables,
+  deleteTables,
+  createTables,
+  createRecords,
+} = require('./dynamodbLocal');
 const { registrationTests } = require('./registration/registration.test');
 const { signInTests } = require('./signIn/signIn.test');
 const { verifyEmailTests } = require('./verifyEmail/verifyEmail.test');
 const { changePasswordTests } = require('./changePassword/changePassword.test');
 const { passwordResetInitTests } = require('./passwordReset/passwordResetInit.test');
-const { passwordResetConfirmTests } = require('./passwordReset/passwordResetConfirm.test');
+const {
+  passwordResetConfirmTests,
+} = require('./passwordReset/passwordResetConfirm.test');
 const { changeEmailInitTests } = require('./changeEmail/changeEmailInit.test');
 const { changeEmailConfirmTests } = require('./changeEmail/changeEmailConfirm.test');
 const { refreshTests } = require('./refresh/refresh.test');

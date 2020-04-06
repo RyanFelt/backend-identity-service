@@ -40,7 +40,7 @@ exports.passwordResetInitTests = () => {
       .send(resetPasswordInitBadEmail.body)
       .end(async (err, res) => {
         expect(res).to.have.status(400);
-        const toBe = 'INVALID_EMAIL';
+        const toBe = 'invalid email';
         expect(res.body.message).to.equal(toBe);
         done();
       });

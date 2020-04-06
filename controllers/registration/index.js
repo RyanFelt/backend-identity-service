@@ -6,7 +6,9 @@ const { ResourceExistsError, resolveErrorSendResponse } = require('../utils/erro
 
 module.exports.handler = async (req, res) => {
   try {
-    const { email, password, emailBool } = req.body;
+    const { password, emailBool } = req.body;
+
+    const email = req.body.email.trim().toLowerCase();
 
     const user = await queryUserByEmail(email);
     if (user && user.email) {
@@ -22,7 +24,7 @@ module.exports.handler = async (req, res) => {
       password: encryptPass,
       emailVerified: false,
       provider: 'thisUserService',
-      role: 'PEASANT',
+      role: '1',
       addedDate: currentDate,
       updatedDate: currentDate,
     };

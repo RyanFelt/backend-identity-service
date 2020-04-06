@@ -46,7 +46,7 @@ exports.registrationTests = () => {
       .send(registerNewUserNoEmail.body)
       .end((err, res) => {
         expect(res).to.have.status(400);
-        const toBe = 'MISSING_EMAIL';
+        const toBe = 'email is required';
         expect(res.body.message).to.equal(toBe);
         done();
       });
@@ -61,7 +61,7 @@ exports.registrationTests = () => {
       .send(registerNewUserNoPassword.body)
       .end((err, res) => {
         expect(res).to.have.status(400);
-        const toBe = 'MISSING_PASSWORD';
+        const toBe = 'password is required';
         expect(res.body.message).to.equal(toBe);
         done();
       });

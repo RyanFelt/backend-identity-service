@@ -33,7 +33,7 @@ exports.verifyEmailTests = () => {
       .set(verifyEmailNoHash.headers)
       .end((err, res) => {
         expect(res).to.have.status(400);
-        const toBe = 'MISSING_EMAILHASH';
+        const toBe = 'emailhash is required';
         expect(res.body.message).to.equal(toBe);
         done();
       });
