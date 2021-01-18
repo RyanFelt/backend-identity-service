@@ -1,6 +1,7 @@
 const AWS = require('aws-sdk');
+const constants = require('../../constants');
 
-const { IS_REGION, IS_NODE_ENV, IS_DYNAMODB_PORT } = process.env;
+const { IS_REGION, IS_NODE_ENV, IS_DYNAMODB_PORT } = constants;
 
 let config = {
   region: IS_REGION || 'us-east-1',

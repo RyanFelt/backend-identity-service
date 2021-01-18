@@ -4,8 +4,9 @@ const {
   ForbiddenError,
   resolveErrorSendResponse,
 } = require('../../controllers/utils/errors');
+const constants = require('../../constants');
 
-const { IS_ACCESS_KEY } = process.env;
+const { IS_ACCESS_KEY } = constants;
 
 const authenticate = async (req, res, next) => {
   try {

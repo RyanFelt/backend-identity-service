@@ -1,11 +1,12 @@
 const jwt = require('jsonwebtoken');
+const constants = require('../../constants');
 
 const {
   IS_ACCESS_KEY,
   IS_ACCESSS_TOKEN_TIME,
   IS_REFRESH_KEY,
   IS_REFRESH_TOKEN_TIME,
-} = process.env;
+} = constants;
 
 exports.generateToken = user =>
   // eslint-disable-next-line implicit-arrow-linebreak
@@ -35,14 +36,13 @@ exports.generateRefreshToken = user =>
 
 exports.authenticateRefresh = async authorization => {
   try {
-    const token = authorization;
-    const decodeToken = await jwt.verify(token, IS_REFRESH_KEY);
+    const decodeToken = await jwt.verify(authorization, IS_REFRESH_KEY);
     return {
       userId: decodeToken.userId,
     };
   } catch (e) {
     console.log('ERROR :: authenticateRefresh()', e);
-    return false;
+    return {};
   }
 };
 

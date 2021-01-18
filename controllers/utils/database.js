@@ -1,7 +1,8 @@
 const { docClient } = require('./dynamoSetup');
 const { ServiceUnavailableError } = require('./errors');
+const constants = require('../../constants');
 
-const { IS_USER_TABLE, IS_REFRESH_TABLE } = process.env;
+const { IS_USER_TABLE, IS_REFRESH_TABLE } = constants;
 
 exports.queryUserByEmail = async email => {
   try {
