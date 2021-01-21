@@ -1,6 +1,6 @@
 const express = require('express');
 const constants = require('./constants');
-const { registration, signIn, refresh, signOut } = require('./');
+const { registration, signIn, refresh, signOut, changePassword } = require('./');
 
 const { IS_PORT } = constants;
 
@@ -13,6 +13,7 @@ app.post('/registration', registration);
 app.post('/signIn', signIn);
 app.get('/refresh', refresh);
 app.get('/signOut', signOut);
+app.post('/changePassword', changePassword);
 
 app.listen(IS_PORT, () => {
   console.log(`
