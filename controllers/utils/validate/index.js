@@ -1,4 +1,4 @@
-const { ValidationError } = require('../../controllers/utils/errors');
+const { ValidationError } = require('../errors');
 
 const requiredFields = param => {
   if (!param || param < 1 || param === 'undefined') {
