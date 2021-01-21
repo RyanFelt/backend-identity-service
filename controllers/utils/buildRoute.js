@@ -1,7 +1,9 @@
 const { resolveErrorSendResponse } = require('./errors');
+const validate = require('../../middlewares/validate');
 
-module.exports = handlerFunc => async (req, res) => {
+module.exports = (handlerFunc, validateSchema) => async (req, res) => {
   try {
+    validate(req, validateSchema);
     const requestResponse = await handlerFunc(req);
     res.status(200).send(requestResponse);
   } catch (e) {

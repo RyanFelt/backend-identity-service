@@ -5,14 +5,19 @@ const refresh = require('./controllers/refresh');
 const registration = require('./controllers/registration');
 const signIn = require('./controllers/signIn');
 const signOut = require('./controllers/signOut');
-
-const { validate } = require('./middlewares/validate');
+const {
+  changePasswordSchema,
+  refreshSchema,
+  registrationSchema,
+  signInSchema,
+  signOutSchema,
+} = require('./middlewares/validate/validationSchema');
 
 module.exports = {
   authenticate: authRole,
-  changePassword: [authenticate, buildRoute(changePassword)],
-  refresh: buildRoute(refresh),
-  registration: buildRoute(registration),
-  signIn: [validate, buildRoute(signIn)],
-  signOut: buildRoute(signOut),
+  changePassword: [authenticate, buildRoute(changePassword, changePasswordSchema)],
+  refresh: buildRoute(refresh, refreshSchema),
+  registration: buildRoute(registration, registrationSchema),
+  signIn: buildRoute(signIn, signInSchema),
+  signOut: buildRoute(signOut, signOutSchema),
 };

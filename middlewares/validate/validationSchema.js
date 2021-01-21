@@ -1,4 +1,4 @@
-const registration = [
+const registrationSchema = [
   {
     param: 'body',
     field: 'email',
@@ -11,7 +11,7 @@ const registration = [
   },
 ];
 
-const signIn = [
+const signInSchema = [
   {
     param: 'body',
     field: 'email',
@@ -24,7 +24,7 @@ const signIn = [
   },
 ];
 
-const changePassword = [
+const changePasswordSchema = [
   {
     param: 'body',
     field: 'password',
@@ -37,7 +37,7 @@ const changePassword = [
   },
 ];
 
-const signOut = [
+const signOutSchema = [
   {
     param: 'headers',
     field: 'authorization',
@@ -45,7 +45,7 @@ const signOut = [
   },
 ];
 
-const verifyEmail = [
+const verifyEmailSchema = [
   {
     param: 'query',
     field: 'emailHash',
@@ -53,7 +53,7 @@ const verifyEmail = [
   },
 ];
 
-const passwordResetInit = [
+const passwordResetInitSchema = [
   {
     param: 'body',
     field: 'email',
@@ -61,7 +61,7 @@ const passwordResetInit = [
   },
 ];
 
-const changeEmailInit = [
+const changeEmailInitSchema = [
   {
     param: 'headers',
     field: 'authorization',
@@ -69,7 +69,7 @@ const changeEmailInit = [
   },
 ];
 
-const changeEmailConfirm = [
+const changeEmailConfirmSchema = [
   {
     param: 'body',
     field: 'changeEmailHash',
@@ -82,13 +82,22 @@ const changeEmailConfirm = [
   },
 ];
 
+const refreshSchema = [
+  {
+    param: 'headers',
+    field: 'authorization',
+    required: true,
+  },
+];
+
 module.exports = {
-  registration,
-  signIn,
-  changePassword,
-  signOut,
-  verifyEmail,
-  passwordResetInit,
-  changeEmailInit,
-  changeEmailConfirm,
+  registrationSchema,
+  signInSchema,
+  changePasswordSchema,
+  signOutSchema,
+  verifyEmailSchema,
+  passwordResetInitSchema,
+  changeEmailInitSchema,
+  changeEmailConfirmSchema,
+  refreshSchema,
 };
