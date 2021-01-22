@@ -5,6 +5,7 @@ const refresh = require('./controllers/refresh');
 const registration = require('./controllers/registration');
 const signIn = require('./controllers/signIn');
 const signOut = require('./controllers/signOut');
+const verifyEmail = require('./controllers/verifyEmail');
 const {
   changePasswordSchema,
   refreshSchema,
@@ -20,4 +21,5 @@ module.exports = {
   registration: buildRoute(registration, registrationSchema),
   signIn: buildRoute(signIn, signInSchema),
   signOut: buildRoute(signOut, signOutSchema),
+  verifyEmail: buildRoute(verifyEmail),
 };

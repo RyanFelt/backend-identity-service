@@ -1,13 +1,16 @@
 /* eslint-disable no-undef */
 const registration = require('./');
 const database = require('../utils/database');
+const sendGrid = require('../utils/sendGrid');
 
 jest.mock('../utils/database');
+jest.mock('../utils/sendGrid');
 
 const req = {
   body: {
     email: 'registerTest@test.com',
     password: 'test11',
+    emailBool: true,
   },
 };
 
@@ -18,6 +21,8 @@ describe('Registration Controller', () => {
 
   test('Should register a new user', async () => {
     database.queryUserByEmail.mockImplementation(() => {});
+
+    sendGrid.sendEmailVerification.mockImplementation(() => {});
 
     const res = await registration(req);
     expect(res.message).toBe('done');
