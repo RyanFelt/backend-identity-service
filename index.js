@@ -11,7 +11,7 @@ const {
   registrationSchema,
   signInSchema,
   signOutSchema,
-} = require('./controllers/utils/validate/validationSchema');
+} = require('./controllers/utils/validate/schema');
 
 module.exports = {
   authenticate: authRole,
