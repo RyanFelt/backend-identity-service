@@ -1,8 +1,10 @@
 /* eslint-disable no-undef */
 const registration = require('./');
+const crypto = require('../utils/crypto');
 const database = require('../utils/database');
 const sendGrid = require('../utils/sendGrid');
 
+jest.mock('../utils/crypto');
 jest.mock('../utils/database');
 jest.mock('../utils/sendGrid');
 
@@ -20,9 +22,10 @@ describe('Registration Controller', () => {
   });
 
   test('Should register a new user', async () => {
+    crypto.encrypt.mockImplementation(() => 'TEST_ENCRYPTED_DATA');
     database.queryUserByEmail.mockImplementation(() => {});
 
-    sendGrid.sendEmailVerification.mockImplementation(() => {});
+    sendGrid.sendEmailVerification.mockImplementation(() => 'ERROR');
 
     const res = await registration(req);
     expect(res.message).toBe('done');
