@@ -1,3 +1,53 @@
+const changeEmailInitSchema = [
+  {
+    param: 'headers',
+    field: 'authorization',
+    required: true,
+  },
+];
+
+const changeEmailConfirmSchema = [
+  {
+    param: 'body',
+    field: 'changeEmailHash',
+    required: true,
+  },
+  {
+    param: 'body',
+    field: 'email',
+    required: true,
+  },
+];
+
+const changePasswordSchema = [
+  {
+    param: 'body',
+    field: 'password',
+    required: true,
+  },
+  {
+    param: 'body',
+    field: 'newPassword',
+    required: true,
+  },
+];
+
+const passwordResetInitSchema = [
+  {
+    param: 'body',
+    field: 'email',
+    required: true,
+  },
+];
+
+const refreshSchema = [
+  {
+    param: 'headers',
+    field: 'authorization',
+    required: true,
+  },
+];
+
 const registrationSchema = [
   {
     param: 'body',
@@ -24,19 +74,6 @@ const signInSchema = [
   },
 ];
 
-const changePasswordSchema = [
-  {
-    param: 'body',
-    field: 'password',
-    required: true,
-  },
-  {
-    param: 'body',
-    field: 'newPassword',
-    required: true,
-  },
-];
-
 const signOutSchema = [
   {
     param: 'headers',
@@ -53,51 +90,14 @@ const verifyEmailSchema = [
   },
 ];
 
-const passwordResetInitSchema = [
-  {
-    param: 'body',
-    field: 'email',
-    required: true,
-  },
-];
-
-const changeEmailInitSchema = [
-  {
-    param: 'headers',
-    field: 'authorization',
-    required: true,
-  },
-];
-
-const changeEmailConfirmSchema = [
-  {
-    param: 'body',
-    field: 'changeEmailHash',
-    required: true,
-  },
-  {
-    param: 'body',
-    field: 'email',
-    required: true,
-  },
-];
-
-const refreshSchema = [
-  {
-    param: 'headers',
-    field: 'authorization',
-    required: true,
-  },
-];
-
 module.exports = {
-  registrationSchema,
-  signInSchema,
-  changePasswordSchema,
-  signOutSchema,
-  verifyEmailSchema,
-  passwordResetInitSchema,
   changeEmailInitSchema,
   changeEmailConfirmSchema,
+  changePasswordSchema,
+  passwordResetInitSchema,
   refreshSchema,
+  registrationSchema,
+  signInSchema,
+  signOutSchema,
+  verifyEmailSchema,
 };
