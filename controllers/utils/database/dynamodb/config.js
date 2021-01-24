@@ -1,5 +1,5 @@
 const AWS = require('aws-sdk');
-const constants = require('../../constants');
+const constants = require('../../../../constants');
 
 const { IS_REGION, IS_NODE_ENV, IS_DYNAMODB_PORT } = constants;
 

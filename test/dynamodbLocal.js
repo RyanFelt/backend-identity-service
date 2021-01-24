@@ -1,5 +1,8 @@
 /* eslint-disable global-require */
-const { dynamodb, docClient } = require('../controllers/utils/dynamoSetup');
+const {
+  dynamodb,
+  docClient,
+} = require('../controllers/utils/database/dynamodb/config');
 const constants = require('../constants');
 
 const { IS_USER_TABLE, IS_REFRESH_TABLE } = constants;

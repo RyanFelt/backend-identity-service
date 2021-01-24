@@ -3,6 +3,7 @@ module.exports = {
 
   IS_NODE_ENV: 'LOCAL',
 
+  IS_DATABASE_TYPE: 'dynamodb',
   IS_USER_TABLE: 'users',
   IS_REFRESH_TABLE: 'refresh',
 
