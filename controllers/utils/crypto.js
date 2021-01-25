@@ -1,4 +1,5 @@
 const crypto = require('crypto');
+const constants = require('../../constants');
 
 const {
   IS_ENCRYPT_KEY,
@@ -6,7 +7,7 @@ const {
   IS_CIPHER_ALGORITHM,
   IS_INPUT_ENCODING,
   IS_OUTPUT_ENCODING,
-} = process.env;
+} = constants;
 
 exports.encrypt = (text, password) => {
   let encryptKey = IS_ENCRYPT_KEY;

@@ -1,24 +1,20 @@
-const { queryUserByEmail, userEmailVerified } = require('../utils/database');
 const { decrypt } = require('../utils/crypto');
-const { ValidationError, resolveErrorSendResponse } = require('../utils/errors');
+const { queryUserByEmail, userEmailVerified } = require('../utils/database');
+const { ValidationError } = require('../utils/errors');
 
-module.exports.handler = async (req, res) => {
-  try {
-    const { emailHash } = req.query;
+module.exports = async req => {
+  const { emailHash } = req.query;
 
-    const email = decrypt(emailHash);
-    if (!email) {
-      throw new ValidationError('email hash invalid');
-    }
-
-    const user = await queryUserByEmail(email);
-    if (!user.userId) {
-      throw new ValidationError('user email hash invalid');
-    }
-
-    await userEmailVerified(user.userId);
-    return res.status(200).send({ message: 'Email verified!' });
-  } catch (e) {
-    return resolveErrorSendResponse(e, res);
+  const email = decrypt(emailHash);
+  if (!email) {
+    throw new ValidationError('invalid email hash');
   }
+
+  const user = await queryUserByEmail(email);
+  if (!user.userId) {
+    throw new ValidationError('invalid user email hash');
+  }
+
+  await userEmailVerified(user.userId);
+  return { message: 'done' };
 };

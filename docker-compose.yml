@@ -12,7 +12,7 @@ services:
     volumes:
       - ./:/usr/src/app
     ports:
-      - '49160:3000'
+      - '49161:3000'
     depends_on:
       - dynamo
     links:

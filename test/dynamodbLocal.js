@@ -1,7 +1,11 @@
 /* eslint-disable global-require */
-const { dynamodb, docClient } = require('../controllers/utils/dynamoSetup');
+const {
+  dynamodb,
+  docClient,
+} = require('../controllers/utils/database/dynamodb/config');
+const constants = require('../constants');
 
-const { IS_USER_TABLE, IS_REFRESH_TABLE } = process.env;
+const { IS_USER_TABLE, IS_REFRESH_TABLE } = constants;
 
 exports.checkTables = async () => dynamodb.listTables({}).promise();
 
@@ -94,8 +98,14 @@ exports.createRecords = async () => {
   } = require('./signIn/fixtures');
   const { verifyEmail } = require('./verifyEmail/fixtures');
   const { changePassword } = require('./changePassword/fixtures');
-  const { resetPasswordInit, resetPasswordConfirm } = require('./passwordReset/fixtures');
-  const { changeEmailRecord, changeEmailInUseRecord } = require('./changeEmail/fixtures');
+  const {
+    resetPasswordInit,
+    resetPasswordConfirm,
+  } = require('./passwordReset/fixtures');
+  const {
+    changeEmailRecord,
+    changeEmailInUseRecord,
+  } = require('./changeEmail/fixtures');
   const { refreshRecord } = require('./refresh/fixtures');
   const { signOutFixture } = require('./signOut/fixtures');
 

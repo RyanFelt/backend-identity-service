@@ -2,7 +2,7 @@ const {
   ValidationError,
   resolveErrorSendResponse,
 } = require('../../controllers/utils/errors');
-const validationSchema = require('./validationSchema');
+const validationSchema = require('./schema');
 
 const requiredFields = param => {
   if (!param || param < 1 || param === 'undefined') {
@@ -26,7 +26,7 @@ const checkPassword = param => {
   return true;
 };
 
-exports.validate = (req, res, next) => {
+module.exports = (req, res, next) => {
   try {
     const path = req.path.split('/')[1];
     if (!validationSchema[path]) {

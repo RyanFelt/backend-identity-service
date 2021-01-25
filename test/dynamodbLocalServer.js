@@ -6,6 +6,6 @@ const { createTables } = require('./dynamodbLocal');
 
 (async () => {
   // dynamodbLocal.install(() => {});
-  // dynamodbLocal.start({ port: IS_DYNAMODB_PORT });
+  // dynamodbLocal.start({ port: 8000 });
   await createTables();
 })();

@@ -1,6 +1,7 @@
 const rp = require('request-promise');
+const constants = require('../../constants');
 
-const { IS_EMAIL_FE_HOST, IS_SG_API_KEY, IS_SG_URL } = process.env;
+const { IS_EMAIL_FE_HOST, IS_SG_API_KEY, IS_SG_URL } = constants;
 
 exports.sendEmailVerification = async (email, emailHash) => {
   try {
