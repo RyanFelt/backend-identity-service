@@ -93,7 +93,7 @@ exports.putRefresh = async Item => {
         return putRefresh_dynamodb(Item);
     }
   } catch {
-  v  console.log(`ERROR :: putRefresh: Item=${Item} :: ${e}`);
+    console.log(`ERROR :: putRefresh: Item=${Item} :: ${e}`);
     throw new ServiceUnavailableError('db unavailable');
   }
 };
