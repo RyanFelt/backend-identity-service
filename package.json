@@ -6,8 +6,8 @@
   "license": "ISC",
   "scripts": {
     "start-dynamo": "node ./test/dynamodbLocalServer.js",
-    "start-dev": "nodemon app.js",
-    "test": "jest --watch --verbose \"controllers/\\**\""
+    "start-dev": "nodemon src/app.js",
+    "test": "jest --watch --verbose \"src/handlers/\\**\""
   },
   "prettier": {
     "trailingComma": "all",

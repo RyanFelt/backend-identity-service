@@ -12,7 +12,7 @@ const req = {
   },
 };
 
-describe('Refresh Controller', () => {
+describe('Refresh Handler', () => {
   afterEach(() => {
     jest.resetAllMocks();
   });

@@ -16,7 +16,7 @@ const req = {
   },
 };
 
-describe('Registration Controller', () => {
+describe('Registration Handler', () => {
   afterEach(() => {
     jest.resetAllMocks();
   });

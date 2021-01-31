@@ -3,7 +3,7 @@ const {
   InvalidCredentialsError,
   ForbiddenError,
   resolveErrorSendResponse,
-} = require('../../controllers/utils/errors');
+} = require('../../handlers/utils/errors');
 const constants = require('../../constants');
 
 const { IS_ACCESS_KEY } = constants;

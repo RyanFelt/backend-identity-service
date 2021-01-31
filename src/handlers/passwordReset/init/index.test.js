@@ -14,7 +14,7 @@ const req = {
   },
 };
 
-describe('Password Reset Init Controller', () => {
+describe('Password Reset Init Handler', () => {
   afterEach(() => {
     jest.resetAllMocks();
   });

@@ -16,7 +16,7 @@ const req = {
   },
 };
 
-describe('Change Email Confirm Controller', () => {
+describe('Change Email Confirm Handler', () => {
   afterEach(() => {
     jest.resetAllMocks();
   });

@@ -13,7 +13,7 @@ const req = {
   },
 };
 
-describe('Change Email Init Controller', () => {
+describe('Change Email Init Handler', () => {
   afterEach(() => {
     jest.resetAllMocks();
   });

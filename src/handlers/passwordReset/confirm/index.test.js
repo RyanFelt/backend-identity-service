@@ -12,7 +12,7 @@ const req = {
   },
 };
 
-describe('Password Reset Confirm Controller', () => {
+describe('Password Reset Confirm Handler', () => {
   afterEach(() => {
     jest.resetAllMocks();
   });

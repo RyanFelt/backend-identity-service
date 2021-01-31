@@ -1,7 +1,7 @@
 const {
   ValidationError,
   resolveErrorSendResponse,
-} = require('../../controllers/utils/errors');
+} = require('../../handlers/utils/errors');
 const validationSchema = require('./schema');
 
 const requiredFields = param => {

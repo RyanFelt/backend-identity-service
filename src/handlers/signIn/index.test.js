@@ -16,7 +16,7 @@ const req = {
   },
 };
 
-describe('SignIn Controller', () => {
+describe('SignIn Handler', () => {
   afterEach(() => {
     jest.resetAllMocks();
   });

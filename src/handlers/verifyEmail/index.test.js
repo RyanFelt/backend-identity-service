@@ -12,7 +12,7 @@ const req = {
   },
 };
 
-describe('VerifyEmail Controller', () => {
+describe('VerifyEmail Handler', () => {
   afterEach(() => {
     jest.resetAllMocks();
   });

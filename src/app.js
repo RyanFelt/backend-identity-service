@@ -1,18 +1,18 @@
 const express = require('express');
 const { authenticate } = require('./middlewares/authenticate');
-const { buildRoute } = require('./controllers/utils/common');
+const { buildRoute } = require('./handlers/utils/common');
 const constants = require('./constants');
-const changeEmailInit = require('./controllers/changeEmail/init');
-const changeEmailConfirm = require('./controllers/changeEmail/confirm');
-const changePassword = require('./controllers/changePassword');
-const passwordResetInit = require('./controllers/passwordReset/init');
-const passwordResetConfirm = require('./controllers/passwordReset/confirm');
-const refresh = require('./controllers/refresh');
-const registration = require('./controllers/registration');
-const signIn = require('./controllers/signIn');
-const signOut = require('./controllers/signOut');
+const changeEmailInit = require('./handlers/changeEmail/init');
+const changeEmailConfirm = require('./handlers/changeEmail/confirm');
+const changePassword = require('./handlers/changePassword');
+const passwordResetInit = require('./handlers/passwordReset/init');
+const passwordResetConfirm = require('./handlers/passwordReset/confirm');
+const refresh = require('./handlers/refresh');
+const registration = require('./handlers/registration');
+const signIn = require('./handlers/signIn');
+const signOut = require('./handlers/signOut');
 const validate = require('./middlewares/validate');
-const verifyEmail = require('./controllers/verifyEmail');
+const verifyEmail = require('./handlers/verifyEmail');
 
 const { IS_PORT } = constants;
 

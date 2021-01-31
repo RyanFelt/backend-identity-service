@@ -10,7 +10,7 @@ const req = {
   },
 };
 
-describe('SignOut Controller', () => {
+describe('SignOut Handler', () => {
   afterEach(() => {
     jest.resetAllMocks();
   });
