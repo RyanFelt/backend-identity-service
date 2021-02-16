@@ -26,7 +26,7 @@ exports.getUser_dynamodb = async userId => {
     ReturnConsumedCapacity: 'TOTAL',
   };
   const user = await docClient.get(params).promise();
-  return user.Item ? user.Item : {};
+  return user.Item.userId ? user.Item : {};
 };
 
 exports.putUser_dynamodb = async Item => {
@@ -118,7 +118,7 @@ exports.getRefresh_dynamodb = async refreshToken => {
     ReturnConsumedCapacity: 'TOTAL',
   };
   const token = await docClient.get(params).promise();
-  return token.Item ? token.Item : {};
+  return token.Item.userId ? token.Item : {};
 };
 
 exports.deleteRefreshRecord_dynamodb = async refreshToken => {

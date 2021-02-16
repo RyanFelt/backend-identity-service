@@ -2,8 +2,8 @@
 const {
   dynamodb,
   docClient,
-} = require('../handlers/utils/database/dynamodb/config');
-const constants = require('../constants');
+} = require('../src/handlers/utils/database/dynamodb/config');
+const constants = require('../src/constants');
 
 const { IS_USER_TABLE, IS_REFRESH_TABLE } = constants;
 

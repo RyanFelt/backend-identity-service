@@ -1,20 +1,13 @@
 {
-  "name": "ryanfelt-identity-service",
-  "version": "0.0.8",
-  "main": "index.js",
+  "name": "backend-identity-service",
+  "version": "1.0.0",
+  "main": "src/app.js",
   "author": "Ryan Feltkamp",
   "license": "ISC",
   "scripts": {
     "start-dynamo": "node ./bin/dynamodbLocalServer.js",
     "start-dev": "nodemon src/app.js",
     "test": "jest --watch --verbose \"src/handlers/\\**\""
-  },
-  "prettier": {
-    "trailingComma": "all",
-    "tabWidth": 2,
-    "semi": true,
-    "singleQuote": true,
-    "printWidth": 85
   },
   "dependencies": {
     "aws-sdk": "^2.393.0",
