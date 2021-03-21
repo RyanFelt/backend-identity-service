@@ -1,11 +1,12 @@
+const IS_NODE_ENV = 'LOCAL'; // 'LOCAL', 'RELEASE', 'PRODUCTION'
+
 module.exports = {
   IS_PORT: '4000',
 
-  IS_NODE_ENV: 'LOCAL',
-
+  IS_NODE_ENV,
   IS_DATABASE_TYPE: 'dynamodb',
-  IS_USER_TABLE: 'users',
-  IS_REFRESH_TABLE: 'refresh',
+  IS_USER_TABLE: `${IS_NODE_ENV}-users`,
+  IS_REFRESH_TABLE: `${IS_NODE_ENV}-refresh`,
 
   IS_ACCESSS_TOKEN_TIME: '1440000',
   IS_REFRESH_TOKEN_TIME: '525600000',

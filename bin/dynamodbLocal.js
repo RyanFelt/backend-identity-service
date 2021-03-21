@@ -34,10 +34,6 @@ exports.createTables = async () => {
         KeyType: 'HASH',
       },
     ],
-    ProvisionedThroughput: {
-      ReadCapacityUnits: 10,
-      WriteCapacityUnits: 10,
-    },
     GlobalSecondaryIndexes: [
       {
         IndexName: 'email-index',
@@ -57,6 +53,7 @@ exports.createTables = async () => {
       },
     ],
     TableName: IS_USER_TABLE,
+    BillingMode: 'PAY_PER_REQUEST',
   };
 
   const paramsRefreshTable = {
@@ -72,11 +69,8 @@ exports.createTables = async () => {
         KeyType: 'HASH',
       },
     ],
-    ProvisionedThroughput: {
-      ReadCapacityUnits: 10,
-      WriteCapacityUnits: 10,
-    },
     TableName: IS_REFRESH_TABLE,
+    BillingMode: 'PAY_PER_REQUEST',
   };
 
   try {
